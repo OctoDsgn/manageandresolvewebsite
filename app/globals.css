@@ -264,3 +264,119 @@
     }
   }
 }
+
+/* ------------------------------------------------------------------ */
+/* Blog article body — styles HTML from the WordPress block editor.    */
+/* ------------------------------------------------------------------ */
+@layer components {
+  .article-content {
+    @apply text-lg leading-[1.8] text-brand-black/90;
+  }
+
+  .article-content > * + * {
+    @apply mt-6;
+  }
+
+  .article-content h2 {
+    @apply mt-14 font-serif text-3xl font-bold leading-tight text-brand-maroon;
+  }
+
+  .article-content h3 {
+    @apply mt-10 font-serif text-2xl font-bold leading-snug text-brand-maroon;
+  }
+
+  .article-content h4 {
+    @apply mt-8 text-xl font-bold text-brand-maroon;
+  }
+
+  .article-content a {
+    @apply font-semibold text-brand-crimson underline decoration-brand-crimson/30 underline-offset-4 transition-colors hover:decoration-brand-crimson;
+  }
+
+  .article-content strong {
+    @apply font-semibold text-brand-black;
+  }
+
+  .article-content ul,
+  .article-content ol {
+    @apply space-y-2 pl-6;
+  }
+
+  .article-content ul {
+    list-style: none;
+  }
+
+  .article-content ul > li {
+    @apply relative;
+  }
+
+  .article-content ul > li::before {
+    content: "";
+    @apply absolute -left-5 top-[0.72em] h-1.5 w-1.5 rotate-45 bg-brand-crimson;
+  }
+
+  .article-content ol {
+    @apply list-decimal marker:font-semibold marker:text-brand-crimson;
+  }
+
+  .article-content blockquote,
+  .article-content .wp-block-pullquote {
+    @apply my-10 border-l-4 border-brand-crimson pl-6 font-serif text-2xl italic leading-snug text-brand-maroon;
+  }
+
+  .article-content blockquote cite,
+  .article-content .wp-block-pullquote cite {
+    @apply mt-3 block font-sans text-base not-italic text-brand-grey-dark;
+  }
+
+  .article-content img {
+    @apply h-auto max-w-full rounded-lg;
+  }
+
+  .article-content figure {
+    @apply my-10;
+  }
+
+  .article-content figcaption {
+    @apply mt-3 text-center text-sm text-brand-grey-dark;
+  }
+
+  .article-content hr {
+    @apply my-12 border-brand-grey-light;
+  }
+
+  .article-content code {
+    @apply rounded bg-brand-grey-light/50 px-1.5 py-0.5 text-[0.9em];
+  }
+
+  .article-content pre {
+    @apply overflow-x-auto rounded-lg bg-brand-black p-5 text-sm text-white;
+  }
+
+  .article-content pre code {
+    @apply bg-transparent p-0;
+  }
+
+  .article-content table {
+    @apply w-full border-collapse text-base;
+  }
+
+  .article-content th,
+  .article-content td {
+    @apply border border-brand-grey-light px-4 py-2 text-left;
+  }
+
+  .article-content th {
+    @apply bg-brand-grey-light/40 font-semibold text-brand-maroon;
+  }
+
+  .article-content .aligncenter,
+  .article-content .has-text-align-center {
+    @apply mx-auto text-center;
+  }
+
+  .article-content iframe,
+  .article-content .wp-block-embed__wrapper iframe {
+    @apply aspect-video h-auto w-full rounded-lg;
+  }
+}

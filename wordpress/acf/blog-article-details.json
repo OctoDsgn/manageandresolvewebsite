@@ -1,0 +1,154 @@
+[
+  {
+    "key": "group_mr_blog_article_details",
+    "title": "Blog article details",
+    "fields": [
+      {
+        "key": "field_mr_blog_subtitle",
+        "label": "Subtitle",
+        "name": "subtitle",
+        "type": "text",
+        "instructions": "Optional one-line standfirst shown under the headline on the article page.",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": { "width": "", "class": "", "id": "" },
+        "default_value": "",
+        "maxlength": 200,
+        "placeholder": "",
+        "prepend": "",
+        "append": ""
+      },
+      {
+        "key": "field_mr_blog_author_name",
+        "label": "Byline name",
+        "name": "author_name",
+        "type": "text",
+        "instructions": "Optional. Overrides the WordPress user shown as the author, e.g. \"Foluke Akinmoladun\".",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": { "width": "50", "class": "", "id": "" },
+        "default_value": "",
+        "maxlength": 100,
+        "placeholder": "",
+        "prepend": "",
+        "append": ""
+      },
+      {
+        "key": "field_mr_blog_author_role",
+        "label": "Byline role",
+        "name": "author_role",
+        "type": "text",
+        "instructions": "Optional, e.g. \"Principal, Manage & Resolve\".",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": { "width": "50", "class": "", "id": "" },
+        "default_value": "",
+        "maxlength": 100,
+        "placeholder": "",
+        "prepend": "",
+        "append": ""
+      },
+      {
+        "key": "field_mr_blog_key_takeaways",
+        "label": "Key takeaways",
+        "name": "key_takeaways",
+        "type": "textarea",
+        "instructions": "Optional. One takeaway per line — shown as a \"Key takeaways\" box at the top of the article.",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": { "width": "", "class": "", "id": "" },
+        "default_value": "",
+        "maxlength": "",
+        "rows": 4,
+        "placeholder": "",
+        "new_lines": ""
+      },
+      {
+        "key": "field_mr_blog_sidebar_cta",
+        "label": "Sidebar call-to-action",
+        "name": "sidebar_cta",
+        "type": "select",
+        "instructions": "Which call-to-action appears beside the article.",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": { "width": "50", "class": "", "id": "" },
+        "choices": {
+          "dispute": "Submit a Dispute",
+          "training": "Training enquiry",
+          "contact": "Contact us",
+          "none": "None"
+        },
+        "default_value": "dispute",
+        "return_format": "value",
+        "multiple": 0,
+        "allow_null": 0,
+        "ui": 0,
+        "ajax": 0,
+        "placeholder": ""
+      },
+      {
+        "key": "field_mr_blog_featured_post",
+        "label": "Featured post",
+        "name": "featured_post",
+        "type": "true_false",
+        "instructions": "Pin this post as the large featured card at the top of the blog page. If several are pinned, the newest wins.",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": { "width": "50", "class": "", "id": "" },
+        "message": "Feature on the blog page",
+        "default_value": 0,
+        "ui": 1,
+        "ui_on_text": "",
+        "ui_off_text": ""
+      },
+      {
+        "key": "field_mr_blog_seo_title",
+        "label": "SEO title",
+        "name": "seo_title",
+        "type": "text",
+        "instructions": "Optional. Overrides the browser tab / search result title. Leave empty if you use an SEO plugin.",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": { "width": "", "class": "", "id": "" },
+        "default_value": "",
+        "maxlength": 70,
+        "placeholder": "",
+        "prepend": "",
+        "append": ""
+      },
+      {
+        "key": "field_mr_blog_seo_description",
+        "label": "SEO description",
+        "name": "seo_description",
+        "type": "textarea",
+        "instructions": "Optional. Overrides the search / social share description (about 155 characters).",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": { "width": "", "class": "", "id": "" },
+        "default_value": "",
+        "maxlength": 170,
+        "rows": 2,
+        "placeholder": "",
+        "new_lines": ""
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "post"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Extra fields read by the Manage & Resolve website (manageandresolve.com).",
+    "show_in_rest": 1
+  }
+]

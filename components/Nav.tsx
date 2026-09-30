@@ -5,15 +5,16 @@ import { usePathname } from "next/navigation";
 import { useState, useSyncExternalStore, type FocusEvent, type KeyboardEvent } from "react";
 import { cn } from "@/lib/cn";
 import { routes, serviceLinks } from "@/lib/site";
-import { ChevronDownIcon, CloseIcon, MenuIcon } from "@/components/icons";
+import { ChevronDownIcon, CloseIcon, MenuIcon, NewspaperIcon } from "@/components/icons";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/layout";
 import { Modal } from "@/components/ui/Modal";
 import { NewsletterPanel } from "@/components/NewsletterBlock";
 import { Logo } from "@/components/Logo";
 
-// Every route opens with a dark photo hero the header can float over.
+// Every route (and every blog article) opens with a dark photo hero the header can float over.
 const routesWithHero = new Set<string>(Object.values(routes));
+const hasHero = (pathname: string) => routesWithHero.has(pathname) || pathname.startsWith(`${routes.blog}/`);
 
 function subscribeToScroll(onChange: () => void) {
   window.addEventListener("scroll", onChange, { passive: true });
@@ -41,7 +42,7 @@ export function Nav() {
   const [newsletterOpen, setNewsletterOpen] = useState(false);
 
   // Transparent over the hero at the top of the page; solid once scrolled or when the menu is open.
-  const solid = scrolled || mobileOpen || !routesWithHero.has(pathname);
+  const solid = scrolled || mobileOpen || !hasHero(pathname);
 
   const isCurrent = (href: string) => (pathname === href ? "page" : undefined);
   const inServices = pathname.startsWith(routes.services);
@@ -153,6 +154,15 @@ export function Nav() {
               </Link>
             </li>
             <li>
+              <Link
+                href={routes.blog}
+                aria-current={pathname.startsWith(routes.blog) ? "page" : undefined}
+                className={desktopLink}
+              >
+                Blog
+              </Link>
+            </li>
+            <li>
               <Link href={routes.contact} aria-current={isCurrent(routes.contact)} className={desktopLink}>
                 Contact Us
               </Link>
@@ -162,14 +172,20 @@ export function Nav() {
                 type="button"
                 onClick={openNewsletter}
                 aria-haspopup="dialog"
+                aria-label="Dede Law newsletter"
+                title="Dede Law newsletter"
                 className={cn(
-                  "ml-1 whitespace-nowrap rounded-full border px-3 py-1.5 text-sm font-semibold transition-colors xl:px-3.5",
+                  "ml-1 flex items-center whitespace-nowrap rounded-full border p-2 text-sm font-semibold transition-colors xl:px-3.5 xl:py-1.5",
                   solid
                     ? "border-brand-grey-mid text-brand-maroon hover:border-brand-crimson hover:text-brand-crimson"
                     : "border-white/50 text-white hover:border-white hover:bg-white/10",
                 )}
               >
-                Dede Law <span aria-hidden="true">↗</span>
+                {/* Icon-only between 1024–1279px so the full link row fits. */}
+                <NewspaperIcon className="h-4 w-4 xl:hidden" />
+                <span aria-hidden="true" className="hidden xl:inline">
+                  Dede Law ↗
+                </span>
               </button>
             </li>
           </ul>
@@ -266,6 +282,21 @@ export function Nav() {
             <li>
               <Link href={routes.principal} onClick={closeAll} aria-current={isCurrent(routes.principal)} className={mobileLink}>
                 Our Principal
+              </Link>
+            </li>
+            <li>
+              <Link href={routes.book} onClick={closeAll} aria-current={isCurrent(routes.book)} className={mobileLink}>
+                Book a Consultation
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={routes.blog}
+                onClick={closeAll}
+                aria-current={pathname.startsWith(routes.blog) ? "page" : undefined}
+                className={mobileLink}
+              >
+                Blog
               </Link>
             </li>
             <li>

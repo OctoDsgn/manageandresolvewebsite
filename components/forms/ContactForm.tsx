@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { contactSubjectOptions, validateContact } from "@/lib/forms";
 import { site } from "@/lib/site";
 import { Button } from "@/components/ui/Button";
-import { FormStatus, SelectField, TextAreaField, TextField } from "./fields";
+import { FormStatus, SelectField, TextAreaField, TextField, Honeypot } from "./fields";
 import { useFormSubmit } from "./useFormSubmit";
 
 type Prefill = { subject?: string; message?: string };
@@ -19,6 +19,7 @@ export function ContactForm({ prefill = {} }: { prefill?: Prefill }) {
 
   return (
     <form noValidate onSubmit={handleSubmit} aria-label="General enquiry form" className="space-y-5">
+      <Honeypot />
       <div className="grid gap-5 sm:grid-cols-2">
         <TextField name="name" label="Your Name" autoComplete="name" required error={errors.name} />
         <TextField

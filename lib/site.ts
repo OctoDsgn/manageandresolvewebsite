@@ -8,6 +8,8 @@ export const routes = {
   submit: "/submit-a-dispute",
   principal: "/our-principal",
   contact: "/contact",
+  blog: "/blog",
+  book: "/book-a-consultation",
 } as const;
 
 export const site = {

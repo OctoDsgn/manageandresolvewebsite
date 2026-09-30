@@ -24,6 +24,8 @@ import { HeroSlideshow } from "@/components/HeroSlideshow";
 import { homeSlides } from "@/lib/heroImages";
 import { revealDelay, riseDelay } from "@/lib/motion";
 import { cn } from "@/lib/cn";
+import { getPosts } from "@/lib/wordpress";
+import { PostCard } from "@/components/blog/PostCard";
 
 export const metadata = pageMetadata({
   title: "Manage & Resolve — ADR Consultancy, Dispute Resolution & Training | Nigeria",
@@ -118,7 +120,9 @@ const testimonials = [
 
 const heroHeadline = "Your dispute doesn’t have to become your disaster.";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const { posts: latestPosts } = await getPosts({ perPage: 3 });
+
   return (
     <>
       {/* 1.1 Hero */}
@@ -383,6 +387,25 @@ export default function HomePage() {
           </Container>
         </div>
       </section>
+
+      {/* Latest from the blog (new — not in the copy doc; hidden until posts exist) */}
+      {latestPosts.length > 0 && (
+        <Section labelledBy="latest-heading">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <SectionIntro id="latest-heading" title="Latest insights" />
+            <div data-reveal>
+              <TextLink href={routes.blog}>View all articles →</TextLink>
+            </div>
+          </div>
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {latestPosts.map((post, index) => (
+              <div key={post.id} data-reveal style={revealDelay(index, 120)} className="flex">
+                <PostCard post={post} />
+              </div>
+            ))}
+          </div>
+        </Section>
+      )}
 
       {/* 1.8 Dede Law newsletter */}
       <NewsletterBlock />

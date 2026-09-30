@@ -62,6 +62,15 @@ export default function ContactPage() {
               <h2 className="text-xl font-bold text-brand-maroon">Or reach us directly</h2>
               <DirectContact className="mt-5" />
             </div>
+            <div className={cardClass}>
+              <h2 className="text-xl font-bold text-brand-maroon">Book a consultation with Foluke</h2>
+              <p className="mt-3 text-sm leading-relaxed text-brand-black/80">
+                Choose a time online, pay securely, and the team will send your meeting link.
+              </p>
+              <ButtonLink href={routes.book} variant="outline" className="mt-5 w-full">
+                Book a consultation →
+              </ButtonLink>
+            </div>
             <div className="rounded-xl border-l-4 border-brand-crimson bg-brand-maroon p-6 text-white shadow-lg sm:p-8">
               <h2 className="text-xl font-bold">Do you have a dispute that needs resolving?</h2>
               <p className="mt-3 text-sm leading-relaxed text-brand-grey-light">

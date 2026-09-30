@@ -3,7 +3,7 @@
 import { validateNewsletter } from "@/lib/forms";
 import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/Button";
-import { FormStatus, TextField } from "./fields";
+import { FormStatus, TextField, Honeypot } from "./fields";
 import { useFormSubmit } from "./useFormSubmit";
 
 /**
@@ -26,6 +26,7 @@ export function NewsletterForm({ variant = "block" }: { variant?: "block" | "com
 
   return (
     <form noValidate onSubmit={handleSubmit} aria-label="Subscribe to the Dede Law & Business Series">
+      <Honeypot />
       <div className={cn("flex flex-col gap-3", !compact && "md:flex-row md:items-start")}>
         {!compact && (
           <TextField

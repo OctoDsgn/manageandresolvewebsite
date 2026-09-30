@@ -13,7 +13,7 @@ import {
 } from "@/lib/forms";
 import { site } from "@/lib/site";
 import { Button } from "@/components/ui/Button";
-import { FormStatus, SelectField, TextAreaField, TextField } from "./fields";
+import { FormStatus, SelectField, TextAreaField, TextField, Honeypot } from "./fields";
 import { useFormSubmit } from "./useFormSubmit";
 
 type Prefill = { name?: string; email?: string; details?: string; method?: string };
@@ -34,6 +34,7 @@ export function DisputeForm({ prefill = {} }: { prefill?: Prefill }) {
 
   return (
     <form noValidate onSubmit={handleSubmit} aria-label="Dispute intake form" className="space-y-6">
+      <Honeypot />
       <div className="grid gap-6 sm:grid-cols-2">
         <TextField
           name="name"

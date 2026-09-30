@@ -84,6 +84,9 @@ export const trainingParticipantOptions = labels(["Just me", "2–5", "6–15", 
 
 export const DISPUTE_DETAILS_MIN_LENGTH = 100;
 
+/** Hidden spam-trap field on every form (see <Honeypot /> and lib/api.ts). */
+export const HONEYPOT_FIELD = "mr_hp";
+
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_PATTERN = /^\+?[\d\s().-]{7,20}$/;
 
@@ -171,6 +174,16 @@ const trainingSchema = {
   message: { maxLength: 5000 },
 } satisfies Record<string, Rule>;
 
+// Consultation booking details (the time slot itself is checked by WordPress).
+const bookingSchema = {
+  name: { required: "Please tell us your name.", maxLength: 200 },
+  email: { required: "Please enter your email address.", email: true, maxLength: 254 },
+  phone: { required: "Please enter a phone number so the team can reach you.", phone: true, maxLength: 30 },
+  company: { maxLength: 200 },
+  topic: { maxLength: 2000 },
+  start: { required: "Please choose a time.", maxLength: 40 },
+} satisfies Record<string, Rule>;
+
 const newsletterSchema = {
   firstName: { maxLength: 100 },
   email: { required: "Please enter your email address.", email: true, maxLength: 254 },
@@ -179,9 +192,11 @@ const newsletterSchema = {
 export type DisputeSubmission = Record<keyof typeof disputeSchema, string>;
 export type ContactSubmission = Record<keyof typeof contactSchema, string>;
 export type TrainingEnquirySubmission = Record<keyof typeof trainingSchema, string>;
+export type BookingDetails = Record<keyof typeof bookingSchema, string>;
 export type NewsletterSubmission = Record<keyof typeof newsletterSchema, string>;
 
 export const validateDispute = (input: unknown) => validate(input, disputeSchema);
 export const validateContact = (input: unknown) => validate(input, contactSchema);
 export const validateTrainingEnquiry = (input: unknown) => validate(input, trainingSchema);
+export const validateBooking = (input: unknown) => validate(input, bookingSchema);
 export const validateNewsletter = (input: unknown) => validate(input, newsletterSchema);

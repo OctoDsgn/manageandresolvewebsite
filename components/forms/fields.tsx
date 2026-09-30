@@ -2,7 +2,7 @@
 
 import { useId, type InputHTMLAttributes, type ReactNode, type SelectHTMLAttributes, type TextareaHTMLAttributes } from "react";
 import { cn } from "@/lib/cn";
-import type { Option } from "@/lib/forms";
+import { HONEYPOT_FIELD, type Option } from "@/lib/forms";
 
 export type Tone = "light" | "dark";
 
@@ -207,6 +207,18 @@ export function FormStatus({
       )}
     >
       {children}
+    </div>
+  );
+}
+
+/** Spam trap: invisible to people and assistive tech, but bots fill it in. */
+export function Honeypot() {
+  return (
+    <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+      <label>
+        Leave this field empty
+        <input type="text" name={HONEYPOT_FIELD} tabIndex={-1} autoComplete="off" defaultValue="" />
+      </label>
     </div>
   );
 }

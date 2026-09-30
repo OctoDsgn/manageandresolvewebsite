@@ -10,7 +10,7 @@ import {
 } from "@/lib/forms";
 import { site } from "@/lib/site";
 import { Button } from "@/components/ui/Button";
-import { FormStatus, SelectField, TextAreaField, TextField } from "./fields";
+import { FormStatus, SelectField, TextAreaField, TextField, Honeypot } from "./fields";
 import { useFormSubmit } from "./useFormSubmit";
 
 type Prefill = { programme?: string; request?: string };
@@ -29,6 +29,7 @@ export function TrainingEnquiryForm({ prefill = {} }: { prefill?: Prefill }) {
 
   return (
     <form noValidate onSubmit={handleSubmit} aria-label="Training enquiry form" className="space-y-5">
+      <Honeypot />
       <div className="grid gap-5 sm:grid-cols-2">
         <SelectField
           name="programme"

@@ -12,7 +12,7 @@ const officeLibrary: HeroImage = { src: "/images/hero/office-library.jpg", posit
 export const homeSlides: HeroImage[] = [officeLibrary, courtroom, legalProfessionals, documentReview];
 
 export const heroImages: Record<
-  "home" | "about" | "services" | "disputeResolution" | "training" | "consultancy" | "submit" | "principal" | "contact",
+  "home" | "about" | "services" | "disputeResolution" | "training" | "consultancy" | "submit" | "principal" | "contact" | "blog" | "book",
   HeroImage | null
 > = {
   home: officeLibrary,
@@ -25,4 +25,6 @@ export const heroImages: Record<
   // Our Principal uses Foluke's own portrait as its hero background (see that page).
   principal: null,
   contact: legalProfessionals,
+  blog: officeLibrary,
+  book: legalProfessionals,
 };

@@ -224,11 +224,16 @@ export default function OurPrincipalPage() {
             or exploring what a mentorship engagement involves — the best next step is a direct conversation.
           </p>
           <Actions className="justify-center">
-            <ButtonLink href={routes.submit} size="lg">
+            <ButtonLink href={routes.book} size="lg">
+              Book a consultation →
+            </ButtonLink>
+            <ButtonLink href={routes.submit} variant="outline" size="lg">
               Submit a dispute or training enquiry →
             </ButtonLink>
-            <TextLink href={contactHref()}>Contact us directly →</TextLink>
           </Actions>
+          <p className="mt-6">
+            <TextLink href={contactHref()}>Contact us directly →</TextLink>
+          </p>
         </div>
       </Section>
 

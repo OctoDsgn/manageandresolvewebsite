@@ -12,6 +12,8 @@ const siteLinks = [
   { label: "Homepage", href: routes.home },
   { label: "About Us", href: routes.about },
   { label: "Our Principal", href: routes.principal },
+  { label: "Blog", href: routes.blog },
+  { label: "Book a Consultation", href: routes.book },
   { label: "Contact Us", href: routes.contact },
   { label: "Submit a Dispute", href: routes.submit },
 ];
