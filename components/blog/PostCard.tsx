@@ -88,36 +88,3 @@ export function PostCard({ post, headingLevel: Heading = "h3" }: { post: BlogPos
     </article>
   );
 }
-
-/** Large side-by-side card for the newest post on the blog index. */
-export function FeaturedPostCard({ post }: { post: BlogPost }) {
-  return (
-    <article
-      data-spotlight
-      className="group relative grid overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-brand-grey-light transition duration-500 ease-out hover:shadow-[0_32px_70px_-28px_rgb(86_24_31/0.5)] lg:grid-cols-[1.15fr_1fr]"
-    >
-      <PostImage post={post} priority sizes="(min-width: 1024px) 55vw, 100vw" className="aspect-[16/10] lg:aspect-auto lg:min-h-[26rem]" />
-      <div className="flex flex-col justify-center p-6 sm:p-10">
-        <div className="flex flex-wrap items-center gap-3">
-          <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand-grey-dark">Latest</span>
-          <CategoryChip post={post} />
-        </div>
-        <h2 className="mt-5 text-3xl font-bold leading-tight text-balance text-brand-maroon transition-colors group-hover:text-brand-crimson sm:text-4xl">
-          <Link href={postHref(post.slug)} className="after:absolute after:inset-0">
-            {post.title}
-          </Link>
-        </h2>
-        <p className="mt-4 line-clamp-4 text-lg leading-relaxed text-brand-black/80">{post.excerpt}</p>
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
-          <PostMeta post={post} />
-          <span className="font-semibold text-brand-crimson">
-            Read article{" "}
-            <span aria-hidden="true" className="inline-block transition-transform duration-300 group-hover:translate-x-1.5">
-              →
-            </span>
-          </span>
-        </div>
-      </div>
-    </article>
-  );
-}

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -82,9 +83,9 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
 
   return (
     <>
-      {/* Hero — featured image behind the title */}
-      <section className={cn("relative overflow-hidden bg-brand-black text-white", heroUnderHeader)}>
-        <HeroBackground image={post.featuredImage ? { src: post.featuredImage.src, position: "center" } : null} />
+      {/* Hero — the same clean maroon banner for every article; the featured image sits below it. */}
+      <section className={cn("relative overflow-hidden bg-brand-maroon text-white", heroUnderHeader)}>
+        <HeroBackground image={null} />
         <Container className="relative py-20 sm:py-28">
           <nav aria-label="Breadcrumb" className="animate-rise text-sm text-brand-grey-light">
             <ol className="flex flex-wrap items-center gap-2">
@@ -141,6 +142,18 @@ export default async function BlogPostPage({ params }: PageProps<"/blog/[slug]">
         )}
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_17rem] lg:gap-16">
           <div className="min-w-0 max-w-3xl">
+            {post.featuredImage && (
+              <figure className="relative mb-12 aspect-[16/9] overflow-hidden rounded-xl bg-brand-grey-light/40 shadow-sm ring-1 ring-brand-grey-light">
+                <Image
+                  src={post.featuredImage.src}
+                  alt={post.featuredImage.alt}
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 48rem, 100vw"
+                  className="object-cover object-[center_25%]"
+                />
+              </figure>
+            )}
             {post.keyTakeaways.length > 0 && (
               <aside
                 aria-labelledby="takeaways-heading"

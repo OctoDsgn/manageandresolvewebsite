@@ -49,7 +49,7 @@ A step-by-step guide for non-developers is published separately; this file is th
 | `author_name` / `author_role` | Text | Byline override |
 | `key_takeaways` | Textarea | "Key takeaways" box — one per line |
 | `sidebar_cta` | Select | Sidebar CTA: `dispute`, `training`, `contact`, `none` |
-| `featured_post` | True/False | Pins the post as the large card on /blog |
+| `featured_post` | True/False | Shows the post first on /blog |
 | `seo_title`, `seo_description` | Text / Textarea | Search & social overrides |
 
 The website reads these by name (`lib/wordpress.ts → readAcf`). Title, body (block editor), excerpt, featured image and categories stay in core WordPress fields. Check: `/wp-json/wp/v2/posts?_embed` should show an `acf` object on each post.

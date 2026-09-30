@@ -8,7 +8,7 @@ import { getCategories, getPosts, isShowingSamplePosts } from "@/lib/wordpress";
 import { Section } from "@/components/ui/layout";
 import { ButtonLink } from "@/components/ui/Button";
 import { PageHero } from "@/components/PageHero";
-import { FeaturedPostCard, PostCard } from "@/components/blog/PostCard";
+import { PostCard } from "@/components/blog/PostCard";
 import { NewsletterBlock } from "@/components/NewsletterBlock";
 
 // The copy doc predates the blog, so this page's metadata and intro are new copy.
@@ -19,7 +19,8 @@ export const metadata = pageMetadata({
   keywords: ["ADR blog Nigeria", "arbitration insights", "mediation articles", "dispute resolution Africa"],
 });
 
-const PER_PAGE = 10;
+// Multiple of 3 so the equal-card grid fills its rows.
+const PER_PAGE = 9;
 
 function blogHref({ category, page }: { category?: string; page?: number }) {
   const params = new URLSearchParams();
@@ -39,11 +40,10 @@ export default async function BlogPage({ searchParams }: PageProps<"/blog">) {
     getPosts({ page, perPage: PER_PAGE, categorySlug: category }),
   ]);
   const activeCategory = categories.find((item) => item.slug === category);
-  // On the first page of the unfiltered list, a post pinned with the ACF
-  // "featured_post" toggle takes the large slot; otherwise the newest post does.
-  const showFeatured = page === 1 && !category;
-  const featured = showFeatured ? (posts.find((post) => post.isFeatured) ?? posts[0]) : undefined;
-  const gridPosts = posts.filter((post) => post !== featured);
+  // Every post gets an equal card. Posts pinned with the ACF "featured_post"
+  // toggle move to the front of the first page; otherwise newest first.
+  const gridPosts =
+    page === 1 && !category ? [...posts.filter((post) => post.isFeatured), ...posts.filter((post) => !post.isFeatured)] : posts;
 
   return (
     <>
@@ -109,11 +109,6 @@ export default async function BlogPage({ searchParams }: PageProps<"/blog">) {
           </div>
         ) : (
           <>
-            {featured && (
-              <div data-reveal className="mb-10">
-                <FeaturedPostCard post={featured} />
-              </div>
-            )}
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {gridPosts.map((post, index) => (
                 <div key={post.id} data-reveal style={revealDelay(index % 3, 110)} className="flex">
